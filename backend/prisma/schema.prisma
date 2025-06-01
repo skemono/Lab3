@@ -42,3 +42,14 @@ model Appearance {
   arc          Arc          @relation(fields: [arcId], references: [id])
   @@unique([characterId, arcId])
 }
+
+model CharacterArcs {
+  character_id          Int
+  character_name       String
+  character_affiliation Affiliation
+  arc_id               Int
+  arc_name             String
+  arc_sea              Sea
+  @@id([character_id, arc_id])
+  @@map("CharacterArcs")
+}
