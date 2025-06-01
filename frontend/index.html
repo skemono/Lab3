@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Personajes de One Piece</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏴‍☠️ Gestor de Personajes de One Piece</h1>
+            <p>Administra tus personajes favoritos de One Piece y sus arcos argumentales</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Add Character Form -->
+            <section class="form-section">
+                <h2>Agregar Nuevo Personaje</h2>
+                <form id="characterForm">
+                    <div class="form-group">
+                        <label for="name">Nombre del Personaje:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="affiliation">Afiliación:</label>
+                        <select id="affiliation" name="affiliation" required>
+                            <option value="">Selecciona Afiliación</option>
+                            <option value="PIRATE">Pirata</option>
+                            <option value="MARINE">Marine</option>
+                            <option value="REVOLUTIONARY">Revolucionario</option>
+                            <option value="CIVILIAN">Civil</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="arcIds">Arcos Argumentales:</label>
+                        <div id="arcCheckboxes" class="checkbox-group">
+                            <!-- Los arcos se cargarán dinámicamente -->
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Agregar Personaje</button>
+                    <button type="button" id="cancelEdit" class="btn btn-secondary" style="display: none;">Cancelar Edición</button>
+                </form>
+            </section>
+
+            <!-- Characters List -->
+            <section class="characters-section">
+                <h2>Personajes</h2>
+                <div class="filter-section">
+                    <input type="text" id="searchInput" placeholder="Buscar personajes..." class="search-input">
+                    <select id="affiliationFilter" class="filter-select">
+                        <option value="">Todas las Afiliaciones</option>
+                        <option value="PIRATE">Piratas</option>
+                        <option value="MARINE">Marines</option>
+                        <option value="REVOLUTIONARY">Revolucionarios</option>
+                        <option value="CIVILIAN">Civiles</option>
+                    </select>
+                </div>
+                <div id="charactersList" class="characters-grid">
+                    <!-- Los personajes se cargarán aquí -->
+                </div>
+            </section>
+        </div>
+
+        <!-- Loading Spinner -->
+        <div id="loading" class="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Cargando...</p>
+        </div>
+
+        <!-- Toast Messages -->
+        <div id="toast" class="toast"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

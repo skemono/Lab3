@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Affiliation {
+  PIRATE
+  MARINE
+  REVOLUTIONARY
+  CIVILIAN
+}
+
+enum Sea {
+  EAST_BLUE
+  GRAND_LINE
+  NEW_WORLD
+}
+
+model Character {
+  id           Int          @id @default(autoincrement())
+  name         String       @unique
+  affiliation  Affiliation
+  appearances  Appearance[]
+}
+
+model Arc {
+  id           Int          @id @default(autoincrement())
+  name         String       @unique
+  sea          Sea
+  appearances  Appearance[]
+}
+
+model Appearance {
+  id           Int          @id @default(autoincrement())
+  characterId  Int
+  arcId        Int
+  character    Character    @relation(fields: [characterId], references: [id], onDelete: Cascade)
+  arc          Arc          @relation(fields: [arcId], references: [id])
+  @@unique([characterId, arcId])
+}
